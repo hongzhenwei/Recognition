@@ -1,0 +1,317 @@
+@charset "utf-8";
+
+*,
+:after,
+:before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-weight: 400;
+	vertical-align: baseline
+}
+html, body {
+	position: relative;
+	height: 100%;
+}
+body {
+	line-height: 1.6;
+	background: #2b4159;
+}
+
+ol,
+ul {
+	list-style: none
+}
+
+@font-face {
+	font-family: cicon;
+	src: url(../fonts/font_385839_bxvpl1zmvwj.eot);
+	src: url(../fonts/font_385839_bxvpl1zmvwj.eot#iefix) format("embedded-opentype"), url(../fonts/font_385839_bxvpl1zmvwj.woff) format("woff"), url(../fonts/font_385839_bxvpl1zmvwj.ttf) format("truetype"), url(../fonts/font_385839_bxvpl1zmvwj.svg#cicon) format("svg")
+}
+
+.c-icon {
+	font-family: cicon!important;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.c-row:after {
+	content: "";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.c-wrapper {
+	width: 506px;
+	margin: 0 auto
+}
+
+.c-col6 {
+	width: 50%;
+	float: left;
+	box-sizing: border-box;
+}
+
+.m-product-panel {
+	height: 100%;
+	text-align: center;
+	padding: 70px 0;
+	background-color: #f2f2f2;
+	background-repeat: no-repeat;
+	background-position: center 0
+}
+.c-title-large .c-title-main {
+	font-size: 28px;
+	font-weight: 500;
+	line-height: 1em;
+}
+
+.c-title-large .c-title-main:after {
+	width: 120px;
+	margin-top: 23px;
+	content: "";
+	display: block;
+	height: 2px;
+	background: #1a5ee6;
+	margin: 16px auto 0;
+	background: #fff;
+	background: linear-gradient(135deg, #1a9be6, #1a57e6);
+}
+
+.c-title-large {
+	text-align: center;
+	margin-bottom: 80px;
+}
+
+.m-product-panel .m-product-panel-list {
+	background: #f5f8f9;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px rgba(7, 61, 125, .16)
+}
+
+.m-product-panel .m-product-panel-list>li {
+	position: relative;
+	cursor: default
+}
+
+.m-product-panel .m-product-panel-list>li h4 {
+	color: white;
+	font-size: 27px;
+	padding: 50px 20px 0;
+	-webkit-transition: color .4s ease, -webkit-transform .4s ease;
+	transition: color .4s ease, -webkit-transform .4s ease;
+	transition: color .4s ease, transform .4s ease;
+	transition: color .4s ease, transform .4s ease, -webkit-transform .4s ease
+}
+
+.m-product-panel .m-product-panel-list>li .m-product-panel-list-note {
+	color: white;
+	font-size: 16px;
+	padding: 20px 30px;
+	-webkit-transition: -webkit-transform .4s ease .05s;
+	transition: -webkit-transform .4s ease .05s;
+	transition: transform .4s ease .05s;
+	transition: transform .4s ease .05s, -webkit-transform .4s ease .05s
+}
+
+.m-product-panel .m-product-panel-list>li .m-product-panel-list-icon {
+	position: absolute;
+	width: 100%;
+	bottom: 90px;
+	left: 0;
+	color: #dcdedf;
+	color: rgba(0, 0, 0, .1);
+	font-size: 64px;
+	visibility: visible;
+	opacity: 1;
+	-webkit-transition: visibility .4s ease, opacity .4s ease;
+	transition: visibility .4s ease, opacity .4s ease
+}
+
+.m-product-panel .m-product-panel-list>li .m-product-panel-list-button {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: visibility .4s ease, opacity .4s ease, -webkit-transform .4s ease .15s;
+	transition: visibility .4s ease, opacity .4s ease, -webkit-transform .4s ease .15s;
+	transition: visibility .4s ease, opacity .4s ease, transform .4s ease .15s;
+	transition: visibility .4s ease, opacity .4s ease, transform .4s ease .15s, -webkit-transform .4s ease .15s
+}
+
+.m-product-panel .m-product-panel-list>li .m-product-panel-list-button button {
+	height: 28px;
+	line-height: 26px;
+	padding: 0 18px;
+	cursor: inherit;
+	color: #666;
+	font-size: 14px;
+	border: 1px solid #d9d9d9;
+	border-radius: 4px;
+	background: transparent;
+	-webkit-transition: color .4s ease, border-color .4s ease, background .4s ease;
+	transition: color .4s ease, border-color .4s ease, background .4s ease
+}
+
+.m-product-panel .m-product-panel-list>li .m-product-panel-list-detail {
+	width: 100%;
+	padding: 0 50px;
+	text-align: left;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-transition: -webkit-transform .4s ease .1s;
+	transition: -webkit-transform .4s ease .1s;
+	transition: transform .4s ease .1s;
+	transition: transform .4s ease .1s, -webkit-transform .4s ease .1s
+}
+
+.m-product-panel .m-product-panel-list>li .m-product-panel-list-detail li {
+	color: white;
+	font-size: 14px;
+	margin-top: 18px
+}
+
+.m-product-panel .m-product-panel-list>li .m-product-panel-list-detail .c-icon {
+	color: #ddd;
+	font-size: 20px;
+	margin-right: 12px;
+	-webkit-transition: color .4s ease;
+	transition: color .4s ease;
+	position: relative;
+	top: 2px
+}
+
+.m-product-panel .m-product-panel-list>li>div {
+	position: relative;
+	z-index: 9;
+	height: 382px;
+	margin: 25px 0;
+	border-left: 1px dashed #d6d6d6;
+	-webkit-transition: border-color .4s ease;
+	transition: border-color .4s ease;
+	overflow: hidden
+}
+
+.m-product-panel .m-product-panel-list>li>div>a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: inherit;
+	text-decoration: none
+}
+
+.m-product-panel .m-product-panel-list>li:first-child>div {
+	border-left-color: transparent
+}
+
+.m-product-panel .m-product-panel-list>li:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+	background: #416abc;
+	-webkit-transition: background .4s ease, box-shadow .4s ease, -webkit-transform .4s ease;
+	transition: background .4s ease, box-shadow .4s ease, -webkit-transform .4s ease;
+	transition: background .4s ease, transform .4s ease, box-shadow .4s ease;
+	transition: background .4s ease, transform .4s ease, box-shadow .4s ease, -webkit-transform .4s ease
+}
+
+.m-product-panel .m-product-panel-list>li.active:after,
+.m-product-panel .m-product-panel-list>li:hover:after {
+	z-index: 1;
+	background: #fff;
+	-webkit-transform: scale(1.08);
+	transform: scale(1.08);
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .13)
+}
+
+.m-product-panel .m-product-panel-list>li.active+li>div,
+.m-product-panel .m-product-panel-list>li.active>div,
+.m-product-panel .m-product-panel-list>li:hover+li>div,
+.m-product-panel .m-product-panel-list>li:hover>div {
+	border-left-color: transparent
+}
+
+.m-product-panel .m-product-panel-list>li.active h4,
+.m-product-panel .m-product-panel-list>li:hover h4 {
+	color: #1a5ee6;
+	-webkit-transform: translate3d(0, -37px, 0);
+	transform: translate3d(0, -37px, 0)
+}
+.m-product-panel .m-product-panel-list>li.active p,
+.m-product-panel .m-product-panel-list>li:hover p {
+	color: #7d7e7e;
+	color: rgba(0, 0, 0, .4);
+	-webkit-transform: translate3d(0, -37px, 0);
+	transform: translate3d(0, -37px, 0)
+}
+.m-product-panel .m-product-panel-list>li.active .m-product-panel-list-note,
+.m-product-panel .m-product-panel-list>li:hover .m-product-panel-list-note {
+	-webkit-transform: translate3d(0, -45px, 0);
+	transform: translate3d(0, -45px, 0)
+}
+.m-product-panel .m-product-panel-list>li.active .m-product-panel-list-detail li,
+.m-product-panel .m-product-panel-list>li:hover .m-product-panel-list-detail li{
+	color: #999;
+}
+
+.m-product-panel .m-product-panel-list>li.active .m-product-panel-list-icon,
+.m-product-panel .m-product-panel-list>li:hover .m-product-panel-list-icon {
+	visibility: hidden;
+	opacity: 0
+}
+
+.m-product-panel .m-product-panel-list>li.active .m-product-panel-list-button,
+.m-product-panel .m-product-panel-list>li:hover .m-product-panel-list-button {
+	visibility: visible;
+	opacity: 1;
+	-webkit-transform: translate3d(0, -40px, 0);
+	transform: translate3d(0, -40px, 0)
+}
+
+.m-product-panel .m-product-panel-list>li.active .m-product-panel-list-button button,
+.m-product-panel .m-product-panel-list>li:hover .m-product-panel-list-button button {
+	color: #fff;
+	border-color: #1a5ee6;
+	background: #1a5ee6;
+	box-shadow: 0 0 9px rgba(0, 0, 0, .06)
+}
+
+.m-product-panel .m-product-panel-list>li.active .m-product-panel-list-detail,
+.m-product-panel .m-product-panel-list>li:hover .m-product-panel-list-detail {
+	-webkit-transform: translate3d(0, -60px, 0);
+	transform: translate3d(0, -60px, 0)
+}
+
+.m-product-panel .m-product-panel-more {
+	margin-top: 64px
+}
+
+.m-product-panel .m-product-panel-more a {
+	color: #666;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 36px;
+	padding: 6px 26px;
+	border: 1px solid #d9d9d9;
+	border-radius: 4px;
+	-webkit-transition: color .4s ease, border-color .4s ease, background .4s ease;
+	transition: color .4s ease, border-color .4s ease, background .4s ease
+}
+
+.m-product-panel .m-product-panel-more a:hover {
+	border-color: #1a5ee6;
+	background: #1a5ee6;
+}

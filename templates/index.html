@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>人工智能开发与应用</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+	</head>
+
+	<body>
+	
+	<div class="m-product-panel">
+		<h3 class="c-title-large light">
+			<p class="c-title-main">人工智能开发与应用</p>
+		</h3>
+		<div class="c-wrapper">
+			<ul class="c-row m-product-panel-list">
+
+				<li class="c-col6 active">
+					<div>
+						<a href="detail1">
+							<h4 class="c-line-clamp">图像识别</h4>
+							<p class="m-product-panel-list-note">调用百度AI提供的API接口，实现图像识别</p>
+							<ul class="m-product-panel-list-detail">
+
+								<li>
+									<i class="c-icon"></i><span>菜品识别</span>
+								</li>
+
+								<li>
+									<i class="c-icon"></i><span>动物识别</span>
+								</li>
+
+								<li>
+									<i class="c-icon"></i><span>植物识别</span>
+								</li>
+
+							</ul>
+							<p class="m-product-panel-list-button"><button>查看详情</button></p>
+						</a>
+					</div>
+				</li>
+
+				<li class="c-col6">
+					<div>
+						<a href="detail2">
+							<h4 class="c-line-clamp">手写体识别</h4>
+							<p class="m-product-panel-list-note">基于TensorFlow+MNIST实现卷积神经网络图像识别</p>
+							<ul class="m-product-panel-list-detail">
+
+								<li>
+									<i class="c-icon"></i><span>手写体识别</span>
+								</li>
+
+							</ul>
+							<p class="m-product-panel-list-button"><button>查看详情</button></p>
+						</a>
+					</div>
+				</li>
+
+			</ul>
+
+		</div>
+	</div>
+	
+	<script src="../static/js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('.m-product-panel-list li').hover(function() {
+				$(this).addClass('active').siblings().removeClass('active');
+			})
+		})
+	</script>
+		
+		
+	</body>
+
+</html>

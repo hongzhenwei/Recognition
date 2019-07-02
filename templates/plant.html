@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>基于人工智能的植物图像识别</title>
+    <link rel="stylesheet" href="../static/css/bootstrap-3.3.7.css">
+    <link rel="stylesheet" href="../static/css/toastr.min.css">
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/toastr.min.js"></script>
+    <script src="../static/js/vue2.2.2.js"></script>
+    <script src="../static/js/axios.min.js"></script>
+    <style>
+      .upload_warp_img_div_del {
+        position: absolute;
+        top: 6px;
+        width: 16px;
+        right: 4px;
+      }
+      .upload_warp_img_div_ok {
+        position: absolute;
+        top: 6px;
+        width: 16px;
+        right: 30px;
+      }
+
+      .upload_warp_img_div_top {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 30px;
+        background-color: rgba(0, 0, 0, 0.4);
+        line-height: 30px;
+        text-align: left;
+        color: #fff;
+        font-size: 12px;
+        text-indent: 4px;
+      }
+
+      .upload_warp_img_div_text {
+        white-space: nowrap;
+        width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .upload_warp_img_div img {
+        max-width: 100%;
+        max-height: 100%;
+        vertical-align: middle;
+      }
+      .upload_warp_img_div .uploadImage{
+        width: 100%;
+        height: 100%;
+      }
+
+      .upload_warp_img_div {
+        position: relative;
+        height: 200px;
+        width: 250px;
+        border: 1px solid #ccc;
+        margin: 0px 30px 10px 0px;
+        float: left;
+        line-height: 100px;
+        display: table-cell;
+        text-align: center;
+        background-color: #eee;
+        cursor: pointer;
+      }
+
+      .upload_warp_img {
+        border-top: 1px solid #D2D2D2;
+        padding: 14px 0 0 14px;
+        overflow: hidden
+      }
+
+      .upload_warp_text, .result_warp_text{
+        text-align: left;
+        margin-bottom: 10px;
+        padding-top: 10px;
+        text-indent: 14px;
+        border-top: 1px solid #ccc;
+        font-size: 14px;
+      }
+
+      .result_warp_text{
+        margin-bottom: 0;
+        padding-bottom: 10px;
+        border-top: none;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .result_warp_text_big{
+        text-align: left;
+        margin: 14px;
+      }
+
+      .result_warp_text_big ul{
+        padding-left: 0;
+      }
+
+      .result_warp_text_big ul li {
+        margin-top: 20px;
+        list-style: none;
+        min-height: 35px;
+        font-size: 16px;
+      }
+      .result_warp_text_big ul li img{
+        margin-left: 100px;
+      }
+      .upload_warp_right {
+        float: left;
+        width: 57%;
+        margin-left: 2%;
+        height: 100%;
+        border: 1px dashed #999;
+        border-radius: 4px;
+        line-height: 130px;
+        color: #999;
+      }
+
+      .upload_warp_left img {
+        margin-top: 32px;
+      }
+
+      .upload_warp_left {
+        float: left;
+        width: 40%;
+        height: 100%;
+        border: 1px dashed #999;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .result_warp_img{
+        width: 320px;
+      }
+      .result_warp_img img{
+        width: 100%;
+        height: 200px;
+      }
+
+      .upload_warp {
+        margin: 14px;
+        height: 130px;
+      }
+
+      .result_warp{
+        margin: 0;
+        min-height: 185px;
+      }
+
+      .upload, .resultBox{
+        float: left;
+        margin-right: 1.8%;
+        width: 40%;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        box-shadow: 0px 1px 0px #ccc;
+        border-radius: 4px;
+      }
+
+      .resultBox{
+        width: 56%;
+      }
+
+      .hello {
+        margin: 20px auto;
+        width: 90%;
+        text-align: center;
+      }
+      .title{
+        margin-bottom: 40px;
+        width: 100%;
+        text-align: center;
+        overflow: hidden;
+      }
+      .title h1{
+        font-size: 24px;
+        font-weight: normal;
+      }
+      table td, table th{
+        font-size: 14px;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+<!--  解决Flask与Vue.js模板冲突问题 -->
+<!--  {% raw %}-->
+  <div id="app">
+    <div class="hello">
+      <div class="title">
+          <h1>基于人工智能的植物图像识别</h1>
+      </div>
+      <div class="upload">
+        <div class="upload_warp">
+          <div class="upload_warp_left" @click="fileClick">
+            <img src="../static/images/upload.png">
+          </div>
+          <div class="upload_warp_right" @drop="drop($event)" @dragenter="dragenter($event)" @dragover="dragover($event)">
+            或者将文件拖到此处
+          </div>
+        </div>
+        <div class="upload_warp_text">
+          选中{{imgList.length}}张文件，共{{bytesToSize(this.size)}}
+        </div>
+        <input @change="fileChange($event)" type="file" id="upload_file" multiple style="display: none"/>
+        <div class="upload_warp_img" v-show="imgList.length!=0">
+          <div class="upload_warp_img_div" v-for="(item,index) of imgList">
+            <div class="upload_warp_img_div_top">
+              <div class="upload_warp_img_div_text">
+                {{item.file.name}}
+              </div>
+              <img src="../static/images/del.png" class="upload_warp_img_div_del" @click="fileDel(index)">
+              <img src="../static/images/ok.png" class="upload_warp_img_div_ok" @click="fileUpLoad(index)">
+            </div>
+            <img :src="item.file.src" class="uploadImage">
+          </div>
+        </div>
+      </div>
+      <div class="resultBox">
+        <div class="result_warp">
+            <div class="result_warp_text">
+                识别结果
+            </div>
+            <div class="result_warp_text_big">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                      <tr>
+                        <th class="col-sm-1">序号</th>
+                        <th class="col-sm-2">名称</th>
+                        <th class="col-sm-9">描述</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(item, index) of resultList">
+                        <td>{{ index + 1 }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.baike_info.description }}</td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  {% endraw %}-->
+  <script>
+    toastr.options.positionClass = 'toast-top-right';
+    let app = new Vue({
+      el: '#app',
+      data () {
+        return {
+          imgList: [],
+          size: 0,
+          src: '',
+          resultList: []
+        }
+      },
+      methods: {
+        fileClick(){
+          document.getElementById('upload_file').click()
+        },
+        fileChange(el){
+          if (!el.target.files[0].size) return;
+          this.fileList(el.target.files);
+          el.target.value = ''
+        },
+        fileList(files){
+          for (let i = 0; i < files.length; i++) {
+            this.fileAdd(files[i]);
+          }
+        },
+        fileAdd(file){
+          this.size = this.size + file.size;//总大小
+          let reader = new FileReader();
+          reader.vue = this;
+          reader.readAsDataURL(file);
+          reader.onload = function () {
+            file.src = this.result;
+            this.vue.imgList.push({
+              file
+            });
+          }
+        },
+        fileDel(index){
+          this.size = this.size - this.imgList[index].file.size;//总大小
+          this.imgList.splice(index, 1);
+          this.resultList = [];
+        },
+        //上传图片
+        fileUpLoad(index){
+          let file = this.imgList[index].file;
+          let formData = new FormData();
+          formData.append('file', file);
+          formData.append('filename', file.name);
+          let config = {
+              headers: {
+                  'Content-Type': 'multipart/form-data'
+              }
+          };
+          axios.post('/plant', formData, config).then( res => {
+              /*这里做处理*/
+              this.src = file.src;
+              return axios.post('/plantvis')
+          }).then( res => {
+              this.resultList = res.data.result;
+              toastr.success('图片识别成功');
+          }).catch( res => {
+              toastr.error(res.msg);
+          });
+        },
+        bytesToSize(bytes){
+          if (bytes === 0) return '0 B';
+          let k = 1000, // or 1024
+            sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+            i = Math.floor(Math.log(bytes) / Math.log(k));
+          return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
+        },
+        dragenter(el){
+          el.stopPropagation();
+          el.preventDefault();
+        },
+        dragover(el){
+          el.stopPropagation();
+          el.preventDefault();
+        },
+        drop(el){
+          el.stopPropagation();
+          el.preventDefault();
+          this.fileList(el.dataTransfer.files);
+        }
+      }
+    })
+  </script>
+  </body>
+  </html>

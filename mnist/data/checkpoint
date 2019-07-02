@@ -1,0 +1,2 @@
+model_checkpoint_path: "D:/zhongl/python/tffinal/mnist\\data\\regresstion.ckpt"
+all_model_checkpoint_paths: "D:/zhongl/python/tffinal/mnist\\data\\regresstion.ckpt"

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MNIST</title>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+      <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <style>
+      h2{
+        margin-top: 60px;
+        margin-bottom: 80px;
+        text-align: center;
+      }
+      .clear-box{
+        margin-top: 20px;
+      }
+      .row{
+        display: flex;
+        align-items: top;
+        justify-content: space-between;
+      }
+      .left-box{
+        position:  relative;
+      }
+      .input-box{
+        position: absolute;
+        top: 0;
+        right: 66px;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>基于TensorFlow+MNIST实现卷积神经网络图像识别</h2>
+      <div class="row">
+        <div class="col-md-5 left-box">
+          <canvas id="main"></canvas>
+          <p class="clear-box">
+            <button id="clear" class="btn btn-default">清空</button>
+          </p>
+          <div class="input-box">
+              <canvas id="canvas2" style="border:1px solid" width="140" height="140"></canvas>
+          </div>
+        </div>
+        <div class="col-md-5">
+
+
+          <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">输出预测:</h3>
+              </div>
+              <div class="panel-body">
+                <table id="output" class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>数字</th>
+                        <th>概率值</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>0</th>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>1</th>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>2</th>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>3</th>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>4</th>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>5</th>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>6</th>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>7</th>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>8</th>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th>9</th>
+                            <td></td>
+                          </tr>
+                    </tbody>
+                </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
